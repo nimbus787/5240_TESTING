@@ -1,15 +1,15 @@
 # SafeBite HK - Python 依赖清单
-# 适用于 Streamlit Community Cloud 部署(Python 3.10+)
+# ⚠️ 重要:必须搭配 .python-version 文件固定 Python 3.11
+# 因为 Python 3.14 上的 transformers v5 移除了 "translation" pipeline
 
 # Streamlit 主框架
-streamlit>=1.30.0
+streamlit>=1.30.0,<2.0
 
-# Hugging Face 核心库
-transformers>=4.35.0
+# Hugging Face 核心库 — 必须用 4.x,5.x 重构了 pipeline,会让 translation 报错
+transformers>=4.35.0,<5.0
 
 # PyTorch CPU 版(Streamlit Cloud 没有 GPU)
-# 注意:这里不指定 +cpu 后缀,让 pip 自动选择
-torch>=2.0.0
+torch>=2.0.0,<3.0
 
 # 图像处理(用于 OCR 输入)
 Pillow>=10.0.0
@@ -18,11 +18,14 @@ Pillow>=10.0.0
 sentencepiece>=0.1.99
 
 # OpenCC:简体中文 → 香港繁体中文
-# 注意:用纯 Python 实现的版本,避免 C++ 编译问题
+# 用纯 Python 实现的版本,避免 C++ 编译问题
 opencc-python-reimplemented>=0.1.7
 
 # transformers 在某些场景下需要 protobuf
-protobuf>=3.20.0
+protobuf>=3.20.0,<5.0
 
-# 加速 transformers 部分操作(可选,但推荐)
+# 加速 transformers 部分操作
 accelerate>=0.20.0
+
+# tokenizers(transformers 的依赖,显式声明避免版本冲突)
+tokenizers>=0.15.0,<0.20.0
