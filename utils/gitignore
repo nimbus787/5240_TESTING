@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# 虚拟环境
+venv/
+env/
+.venv/
+
+# IDE / 编辑器
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Hugging Face / PyTorch 缓存(模型权重不应进 git)
+.cache/
+~/.cache/
+*.bin
+*.safetensors
+*.ckpt
+
+# Streamlit
+.streamlit/secrets.toml
+
+# 测试用图片(不进 git)
+test_images/
+*.png.test
